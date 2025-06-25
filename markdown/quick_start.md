@@ -35,13 +35,13 @@
       - PAYMENT_TIME - time allotted for payment
       - RULES - rules for using the bot (to disable, set `RULES: Final = None`)
 
-   6. If you plan to receive IPN webhooks, start the IPN server and expose it with ngrok:
+   6. If you plan to receive IPN webhooks, start the IPN server and expose it with ngrok (after installing requirements):
        ```bash
        python ipn.py
        # in another terminal
        ngrok http 5000
        ```
-      Use the HTTPS URL shown in the console as `NOWPAYMENTS_IPN_URL`, e.g.:
+      The `ipn.py` script will install Flask if it's missing. Use the HTTPS URL shown in the console as `NOWPAYMENTS_IPN_URL`, e.g.:
 
       ```
       NOWPAYMENTS_IPN_URL=https://xxxx.ngrok-free.app/nowpayments-ipn

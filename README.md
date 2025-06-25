@@ -54,13 +54,15 @@ There are a couple of buttons in the admin panel to control all processes in the
 ## Installation 💾
 [QUICK START](markdown/quick_start.md)
 
-For local testing of NOWPayments webhooks you need to run the IPN server and expose it with **ngrok**:
+For local testing of NOWPayments webhooks you need to run the IPN server and expose it with **ngrok** (make sure dependencies are installed first):
 
 ```bash
 python ipn.py
 # in another terminal
 ngrok http 5000
 ```
+
+The `ipn.py` script installs its own dependencies if needed, so simply running it is usually enough.
 
 Use the HTTPS URL as `NOWPAYMENTS_IPN_URL` in your environment so NOWPayments can
 
