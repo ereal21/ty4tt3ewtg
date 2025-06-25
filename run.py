@@ -42,7 +42,7 @@ from bot.ipn_server import app as ipn_app
 
 
 def run_ipn() -> None:
-    ipn_app.run(host="0.0.0.0", port=8000)
+    ipn_app.run(host="0.0.0.0", port=5000)
 
 if __name__ == '__main__':
     ensure_requirements()
