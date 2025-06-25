@@ -1,0 +1,58 @@
+LANGUAGES = {
+    'en': {
+        'hello': '👋 Hello, {user}!',
+        'balance': '💰 Balance: {balance} EUR',
+        'basket': '🛒 Basket: {items} item(s)',
+        'overpay': '💳 Send the exact amount. Overpayments will be credited.',
+        'shop': '🛍 Shop',
+        'profile': '👤 Profile',
+        'top_up': '💸 Top Up',
+        'channel': '📢 Channel',
+        'support': '🆘 Support',
+        'language': '🌐 Language',
+        'admin_panel': '🎛 Admin Panel',
+        'choose_language': 'Please choose a language',
+        'invoice_message': 'Send `{amount}` {currency} to the address below:\n`{address}`\nAfter payment press the button below.',
+        'i_paid': 'I paid',
+        'cancel': 'Cancel',
+    },
+    'ru': {
+        'hello': '👋 Привет, {user}!',
+        'balance': '💰 Баланс: {balance} EUR',
+        'basket': '🛒 Корзина: {items} шт.',
+        'overpay': '💳 Отправьте точную сумму. Переплаты будут зачислены.',
+        'shop': '🛍 Магазин',
+        'profile': '👤 Профиль',
+        'top_up': '💸 Пополнить',
+        'channel': '📢 Канал',
+        'support': '🆘 Поддержка',
+        'language': '🌐 Язык',
+        'admin_panel': '🎛 Админ панель',
+        'choose_language': 'Пожалуйста, выберите язык',
+        'invoice_message': 'Отправьте `{amount}` {currency} на адрес ниже:\n`{address}`\nПосле оплаты нажмите кнопку ниже.',
+        'i_paid': 'Я оплатил',
+        'cancel': 'Отмена',
+    },
+    'lt': {
+        'hello': '👋 Sveiki, {user}!',
+        'balance': '💰 Balansas: {balance} EUR',
+        'basket': '🛒 Krepšelis: {items} prekės',
+        'overpay': '💳 Siųskite tikslią sumą. Permokos bus įskaitytos.',
+        'shop': '🛍 Parduotuvė',
+        'profile': '👤 Profilis',
+        'top_up': '💸 Papildyti',
+        'channel': '📢 Kanalu',
+        'support': '🆘 Pagalba',
+        'language': '🌐 Kalba',
+        'admin_panel': '🎛 Admin pultas',
+        'choose_language': 'Pasirinkite kalbą',
+        'invoice_message': 'Siųskite `{amount}` {currency} žemiau nurodytu adresu:\n`{address}`\nPo apmokėjimo paspauskite apačioje esantį mygtuką.',
+        'i_paid': 'Apmokėjau',
+        'cancel': 'Atšaukti',
+    },
+}
+
+def t(lang: str, key: str, **kwargs) -> str:
+    lang_data = LANGUAGES.get(lang, LANGUAGES['en'])
+    template = lang_data.get(key, '')
+    return template.format(**kwargs)
