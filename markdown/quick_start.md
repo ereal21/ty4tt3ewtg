@@ -35,17 +35,12 @@
       - PAYMENT_TIME - time allotted for payment
       - RULES - rules for using the bot (to disable, set `RULES: Final = None`)
 
-   6. If you plan to receive IPN webhooks, start the IPN server and expose it with ngrok (after installing requirements):
-       ```bash
-       python ipn.py
-       # in another terminal
-       ngrok http 5000
-       ```
-      The `ipn.py` script will install Flask if it's missing. Use the HTTPS URL shown in the console as `NOWPAYMENTS_IPN_URL`, e.g.:
 
-      ```
-      NOWPAYMENTS_IPN_URL=https://xxxx.ngrok-free.app/nowpayments-ipn
-      ```
+   6. If you plan to receive IPN webhooks, start the IPN server and expose it with ngrok (after installing requirements):
+=======   6. If you plan to receive IPN webhooks, start the IPN server and expose it with ngrok:
+
+
+
   7. Run run.py
    8. Make sure your self-hosted nodes are up and RPC endpoints match the URLs above.
 
@@ -53,7 +48,7 @@
 1. Add the bot to the channel and group you have provided and make it an admin
 2. To apply latest migration, use 
       ```
-      alembic upgrade head
+
       ```
 
 ### [BACK](../README.md)

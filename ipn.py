@@ -28,4 +28,9 @@ def ensure_requirements() -> None:
 if __name__ == "__main__":
     ensure_requirements()
     from bot.ipn_server import app
+
+from bot.ipn_server import app
+
+if __name__ == "__main__":
+
     app.run(host="0.0.0.0", port=5000)
