@@ -24,7 +24,7 @@
 
      - `NOWPAYMENTS_API_KEY` - API key from your NOWPayments account
      - `NOWPAYMENTS_IPN_SECRET` - secret used to verify IPN callbacks
-     - `NOWPAYMENTS_IPN_URL` - public URL for NOWPayments webhooks (set via ngrok during development)
+     - `NOWPAYMENTS_IPN_URL` - public URL for NOWPayments webhooks (set via ngrok during development). Include `/nowpayments-ipn` in the URL.
 
 
    5. [Setup config.py](../bot/misc/config.py)
@@ -35,12 +35,18 @@
       - PAYMENT_TIME - time allotted for payment
       - RULES - rules for using the bot (to disable, set `RULES: Final = None`)
 
-   6. If you plan to receive IPN webhooks, expose your local server with ngrok:
+   6. If you plan to receive IPN webhooks, start the IPN server and expose it with ngrok:
        ```bash
-       ngrok http 8000
+       python ipn.py
+       # in another terminal
+       ngrok http 5000
        ```
-      Use the HTTPS URL shown in the console as `NOWPAYMENTS_IPN_URL`.
-   7. Run run.py
+      Use the HTTPS URL shown in the console as `NOWPAYMENTS_IPN_URL`, e.g.:
+
+      ```
+      NOWPAYMENTS_IPN_URL=https://xxxx.ngrok-free.app/nowpayments-ipn
+      ```
+  7. Run run.py
    8. Make sure your self-hosted nodes are up and RPC endpoints match the URLs above.
 
 ### P.S.
