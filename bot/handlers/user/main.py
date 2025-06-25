@@ -503,8 +503,18 @@ async def crypto_payment(call: CallbackQuery):
 
     sleep_time = int(TgConfig.PAYMENT_TIME)
     lang = get_user_language(user_id) or 'en'
+    expires_at = (
+        datetime.datetime.now() + datetime.timedelta(seconds=sleep_time)
+    ).strftime('%H:%M')
     markup = crypto_invoice_menu(payment_id, lang)
-    text = t(lang, 'invoice_message', amount=pay_amount, currency=currency, address=address)
+    text = t(
+        lang,
+        'invoice_message',
+        amount=pay_amount,
+        currency=currency,
+        address=address,
+        expires_at=expires_at,
+    )
 
     # Generate QR code for the address
     qr = qrcode.make(address)
@@ -513,11 +523,13 @@ async def crypto_payment(call: CallbackQuery):
     buf.seek(0)
 
     await bot.delete_message(chat_id=call.message.chat.id, message_id=call.message.message_id)
-    await bot.send_photo(chat_id=call.message.chat.id,
-                         photo=buf,
-                         caption=text,
-                         parse_mode='Markdown',
-                         reply_markup=markup)
+    await bot.send_photo(
+        chat_id=call.message.chat.id,
+        photo=buf,
+        caption=text,
+        parse_mode='HTML',
+        reply_markup=markup,
+    )
     await asyncio.sleep(sleep_time)
     info = select_unfinished_operations(payment_id)
     if info:
