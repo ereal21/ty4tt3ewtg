@@ -31,11 +31,13 @@ def verify_signature(data: bytes, signature: str | None) -> bool:
 
 
 @app.route("/nowpayments-ipn", methods=["POST"])
+@app.route("/", methods=["POST"])  # fallback if IPN path omitted
 def nowpayments_ipn():
     if not verify_signature(request.data, request.headers.get("x-nowpayments-sig")):
         abort(400)
 
-    data = request.get_json(silent=True) or {}
+    # try to parse JSON regardless of Content-Type header
+    data = request.get_json(force=True, silent=True) or {}
     payment_id = str(data.get("payment_id"))
     status = data.get("payment_status")
     if not payment_id or not status:
